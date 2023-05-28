@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Http\Resources\UserResource;
 
 class UserController extends Controller
 {
@@ -30,7 +31,8 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        //
+        $user = User::create($request->validated());
+        return UserResource::make($user);
     }
 
     /**
@@ -38,7 +40,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return UserResource::make($user);
     }
 
     /**
