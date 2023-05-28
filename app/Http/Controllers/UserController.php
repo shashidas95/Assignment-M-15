@@ -33,6 +33,7 @@ class UserController extends Controller
     {
         $user = User::create($request->validated());
         return UserResource::make($user);
+
     }
 
     /**
@@ -56,7 +57,9 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        //
+        $user->update($request->validated());
+        return UserResource::make($user);
+
     }
 
     /**
@@ -64,6 +67,6 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+
     }
 }
